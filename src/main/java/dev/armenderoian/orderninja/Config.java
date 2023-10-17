@@ -1,6 +1,6 @@
-package dev.armenderoian;
+package dev.armenderoian.orderninja;
 
-import dev.armenderoian.util.EncodingUtils;
+import dev.armenderoian.orderninja.util.EncodingUtils;
 import lombok.Data;
 import lombok.SneakyThrows;
 

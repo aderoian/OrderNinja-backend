@@ -1,7 +1,7 @@
 <Configuration>
     <variable name="LOG_LEVEL" value="${LOG_LEVEL:-INFO}"/>
 
-    <appender name="STDOUT" class="dev.armenderoian.util.JLineLogbackAppender">
+    <appender name="STDOUT" class="dev.armenderoian.orderninja.util.JLineLogbackAppender">
         <encoder>
             <pattern>%d{HH:mm:ss} [%highlight(%level)] [%gray(%logger)] %msg%n</pattern>
         </encoder>

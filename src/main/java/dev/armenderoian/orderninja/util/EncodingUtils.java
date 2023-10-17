@@ -1,4 +1,4 @@
-package dev.armenderoian.util;
+package dev.armenderoian.orderninja.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

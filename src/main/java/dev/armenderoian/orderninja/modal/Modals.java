@@ -1,4 +1,4 @@
-package dev.armenderoian.modal;
+package dev.armenderoian.orderninja.modal;
 
 public interface Modals {
 	Class<?>[] MODALS = {

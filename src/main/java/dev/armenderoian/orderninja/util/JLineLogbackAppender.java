@@ -1,8 +1,8 @@
-package dev.armenderoian.util;
+package dev.armenderoian.orderninja.util;
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.ConsoleAppender;
-import dev.armenderoian.OrderNinja;
+import dev.armenderoian.orderninja.OrderNinja;
 
 import java.util.Arrays;
 

@@ -1,6 +1,6 @@
-package dev.armenderoian.route;
+package dev.armenderoian.orderninja.route;
 
-import dev.armenderoian.OrderNinja;
+import dev.armenderoian.orderninja.OrderNinja;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 

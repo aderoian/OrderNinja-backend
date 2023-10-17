@@ -1,11 +1,11 @@
-package dev.armenderoian;
+package dev.armenderoian.orderninja;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
-import dev.armenderoian.modal.Modals;
-import dev.armenderoian.route.SiteRouter;
-import dev.armenderoian.util.Command;
-import dev.armenderoian.util.EncodingUtils;
+import dev.armenderoian.orderninja.modal.Modals;
+import dev.armenderoian.orderninja.route.SiteRouter;
+import dev.armenderoian.orderninja.util.Command;
+import dev.armenderoian.orderninja.util.EncodingUtils;
 import dev.morphia.Datastore;
 import dev.morphia.Morphia;
 import dev.morphia.mapping.MapperOptions;
