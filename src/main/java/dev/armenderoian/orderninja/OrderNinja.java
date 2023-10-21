@@ -3,6 +3,7 @@ package dev.armenderoian.orderninja;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import dev.armenderoian.orderninja.modal.Modals;
+import dev.armenderoian.orderninja.route.AccountRouter;
 import dev.armenderoian.orderninja.route.SiteRouter;
 import dev.armenderoian.orderninja.util.Command;
 import dev.armenderoian.orderninja.util.EncodingUtils;
@@ -95,6 +96,7 @@ public class OrderNinja {
 
 				// Configure routers
 				SiteRouter.configure(javalin);
+				AccountRouter.configure(javalin);
 
 				// Start the server.
 				javalin.start(Config.get().getPort());

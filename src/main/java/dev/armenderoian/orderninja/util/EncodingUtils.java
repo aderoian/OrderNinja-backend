@@ -1,12 +1,22 @@
 package dev.armenderoian.orderninja.util;
 
+import com.auth0.jwt.algorithms.Algorithm;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import dev.armenderoian.orderninja.Config;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.io.Reader;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.security.KeyFactory;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
 public interface EncodingUtils {
@@ -15,6 +25,10 @@ public interface EncodingUtils {
 			.disableHtmlEscaping()
 			.serializeNulls()
 			.create();
+
+	BCryptPasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder(16);
+
+	Algorithm JWTAlgorithm = Algorithm.RSA256(Config.get().getKeyProvider());
 
 	/**
 	 * Converts an object to JSON.
@@ -121,6 +135,27 @@ public interface EncodingUtils {
 	}
 
 	/**
+	 * Encodes a password with 16 rounds.
+	 *
+	 * @param rawPassword Raw password to encode.
+	 * @return Encoded password.
+	 */
+	static String encodePassword(String rawPassword) {
+		return PASSWORD_ENCODER.encode(rawPassword);
+	}
+
+	/**
+	 * Compares a raw password to an encoded password.
+	 *
+	 * @param raw     The raw password.
+	 * @param encoded The encoded password
+	 * @return True if the passwords match, false otherwise.
+	 */
+	static boolean comparePassword(String raw, String encoded) {
+		return PASSWORD_ENCODER.matches(raw, encoded);
+	}
+
+	/**
 	 * Validates a URL.
 	 *
 	 * @param url The URL to validate.
@@ -133,5 +168,15 @@ public interface EncodingUtils {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+
+	static RSAPublicKey readRSAPublicKey(Path file) throws Exception {
+		var keyBytes = Files.readAllBytes(file);
+		return (RSAPublicKey) KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(keyBytes));
+	}
+
+	static RSAPrivateKey readRSAPrivateKey(Path file) throws Exception {
+		var keyBytes = Files.readAllBytes(file);
+		return (RSAPrivateKey) KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(keyBytes));
 	}
 }
